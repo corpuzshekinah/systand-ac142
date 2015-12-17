@@ -1,0 +1,67 @@
+<?php
+
+namespace app\models;
+
+use Yii;
+
+/**
+ * This is the model class for table "education".
+ *
+ * @property integer $id
+ * @property string $education_level
+ * @property string $education_name
+ * @property string $education_degree
+ * @property string $education_year_graduated
+ * @property string $education_hieghest
+ * @property string $education_date_from
+ * @property string $education_date_to
+ * @property string $education_scholarship
+ * @property string $education_awards
+ * @property integer $education_faculty_id
+ */
+class Education extends \yii\db\ActiveRecord
+{
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return 'education';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['education_level', 'education_name', 'education_degree', 'education_year_graduated', 'education_hieghest', 'education_date_from', 'education_date_to', 'education_scholarship', 'education_awards', 'education_faculty_id'], 'required'],
+            [['education_date_from', 'education_date_to'], 'safe'],
+            [['education_faculty_id'], 'integer'],
+            [['education_level', 'education_scholarship'], 'string', 'max' => 25],
+            [['education_name', 'education_degree', 'education_awards'], 'string', 'max' => 45],
+            [['education_year_graduated'], 'string', 'max' => 5],
+            [['education_hieghest'], 'string', 'max' => 10]
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'education_level' => 'Education Level',
+            'education_name' => 'Education Name',
+            'education_degree' => 'Education Degree',
+            'education_year_graduated' => 'Education Year Graduated',
+            'education_hieghest' => 'Education Hieghest',
+            'education_date_from' => 'Education Date From',
+            'education_date_to' => 'Education Date To',
+            'education_scholarship' => 'Education Scholarship',
+            'education_awards' => 'Education Awards',
+            'education_faculty_id' => 'Education Faculty ID',
+        ];
+    }
+}
