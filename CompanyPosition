@@ -1,0 +1,64 @@
+<?php
+
+namespace app\models;
+
+use Yii;
+
+/**
+ * This is the model class for table "company_position".
+ *
+ * @property integer $id
+ * @property string $company_position_title
+ * @property string $company_position_date_from
+ * @property string $company_position_date_to
+ * @property string $company_position_department
+ * @property string $company_position_salary
+ * @property string $company_position_stepincrement
+ * @property string $company_position_status
+ * @property string $company_position_govt_status
+ * @property integer $company_position_faculty_id
+ */
+class CompanyPosition extends \yii\db\ActiveRecord
+{
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return 'company_position';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['company_position_title', 'company_position_date_from', 'company_position_date_to', 'company_position_department', 'company_position_salary', 'company_position_stepincrement', 'company_position_status', 'company_position_govt_status', 'company_position_faculty_id'], 'required'],
+            [['company_position_date_from', 'company_position_date_to'], 'safe'],
+            [['company_position_faculty_id'], 'integer'],
+            [['company_position_title', 'company_position_department', 'company_position_status'], 'string', 'max' => 45],
+            [['company_position_salary', 'company_position_stepincrement'], 'string', 'max' => 25],
+            [['company_position_govt_status'], 'string', 'max' => 5]
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'company_position_title' => 'Company Position Title',
+            'company_position_date_from' => 'Company Position Date From',
+            'company_position_date_to' => 'Company Position Date To',
+            'company_position_department' => 'Company Position Department',
+            'company_position_salary' => 'Company Position Salary',
+            'company_position_stepincrement' => 'Company Position Stepincrement',
+            'company_position_status' => 'Company Position Status',
+            'company_position_govt_status' => 'Company Position Govt Status',
+            'company_position_faculty_id' => 'Company Position Faculty ID',
+        ];
+    }
+}
